@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>header}}
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">Registration</div>
+        <form action="/" method="POST">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Fist Name</span>
+                    <input type="text" placeholder="Enter your First Name" name="firstname">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Last Name</span>
+                    <input type="text" placeholder="Enter your Last Name" name="lastname">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" placeholder="Enter your Email" name="email">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" placeholder="Enter your Phone Number" name="phone">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" placeholder="Enter your Password" name="password">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="password" placeholder="Confirm your Password" name="confirmpassword">
+                </div>
+
+
+            </div>
+            <!-- Gender -->
+            <div class="gender-details">
+                <span class="details">Gender</span>
+                <div class="gender">
+                    <span class="male">
+                        <input type='radio' name="gender" value="male"/>
+                        Male
+                    </span>
+                    <span class="female">
+                        <input type='radio' name="gender" value="female"/>
+                        Female
+                    </span>
+                    
+                </div>
+
+
+            </div>
+            <!-- Button -->
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
