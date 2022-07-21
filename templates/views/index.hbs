@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>header}}
+    <link rel="stylesheet" href="css/style2.css" />
+  </head>
+  <body>
+    <!-- nav -->
+    {{>navbar}}
+          <div class="box10"></div>
+    <h1 id="heading">Welcome to my Website</h1>
+    <p id="para">An interesting place filled with mind bending realizations</p>
+    <!-- box 1 -->
+    <div class="box1">
+
+      <div class="box11"></div>
+    </div>
+    <!-- box 2 -->
+    <div class="box2">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia architecto fugiat ab quis possimus ad ullam voluptatem, culpa voluptatibus, cum reprehenderit, molestias suscipit deleniti atque a facere! Maiores, quo nihil!</p>
+    </div>
+    <!-- box 3 -->
+    <div class="box3"></div>
+    <!-- JavaScript -->
+    <script>
+        const box2 = document.querySelector(".box2");
+        const observer = new IntersectionObserver((entries)=>{
+            const ent = entries[0];
+            console.log(ent);
+            ent.isIntersecting ? document.body.classList.add("sticky"):document.body.classList.remove("sticky");
+                    
+        },
+        {root:null, threshold:0})
+
+        observer.observe(box2);
+    </script>
+  </body>
+</html>

@@ -3,13 +3,25 @@
 
 <head>
     {{>header}}
+    <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: block;
+    }
 
+    {{>nav}}
+</style>
 <body>
-
+    {{>navbar}}
+    <div class="ccontainer">
     <div class="container">
         <div class="title">Registration</div>
-        <form action="/" method="POST">
+        <form action="/register" method="POST">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Fist Name</span>
@@ -67,7 +79,7 @@
 
         </form>
     </div>
-
+</div>
 </body>
 
 </html>

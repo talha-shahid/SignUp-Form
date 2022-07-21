@@ -19,10 +19,15 @@ app.set("views", template_path);
 hbs.registerPartials(partials_path);
 
 app.get("/", (req, res)=>{
-    res.render("register")
+    res.render("index");
 })
 
-app.post("/", async(req, res)=>{
+//sign up
+app.get("/register", (req, res)=>{
+    res.render("register");
+})
+
+app.post("/register", async(req, res)=>{
     try {
         const password = req.body.password;
         const cpassword = req.body.confirmpassword;
@@ -50,6 +55,32 @@ app.post("/", async(req, res)=>{
         }
     } catch (err) {
         res.status(400).send(err);
+    }
+})
+
+//login check
+
+app.get("/login", (req,res)=>{
+    res.render("login");
+})
+
+app.post("/login", async(req,res)=>{
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+        console.log(email);
+
+        const useremail = await Register.findOne({email: email});
+
+        if(useremail.password === password){
+            res.status(201).render("index");
+        }
+        else{
+            res.send("password are not matching");
+        }
+    }
+    catch(error){
+        res.status(400).send("invalid email");
     }
 })
 
