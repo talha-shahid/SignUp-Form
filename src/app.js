@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
+const bcrypt = require("bcryptjs");
 const app = express();
 const port = process.env.PORT || 3000;
 require("./db/conn");
@@ -18,25 +19,25 @@ app.set("view engine", "hbs");
 app.set("views", template_path);
 hbs.registerPartials(partials_path);
 
+
+//--> get "/"
 app.get("/", (req, res)=>{
     res.render("index");
 })
 
 //sign up
+
+//--->get "/register"
 app.get("/register", (req, res)=>{
     res.render("register");
 })
-
+//--->post "/register"
 app.post("/register", async(req, res)=>{
     try {
         const password = req.body.password;
         const cpassword = req.body.confirmpassword;
-
-
+        //if passwords are matching,then proceed
         if(password === cpassword){
-            
-
-          
             const registerEmployee = new Register({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
@@ -46,9 +47,12 @@ app.post("/register", async(req, res)=>{
                 confirmpassword: cpassword,
                 gender: req.body.gender
             })
-
+            //generate token
+            const token = await registerEmployee.generateAuthToken();
+            //save to database
             const registered = await registerEmployee.save();
-            res.status(201).render("register")
+            //return to index
+            res.status(201).render("index");
         }
         else{
             res.send("Passwords are not matching")
@@ -60,19 +64,24 @@ app.post("/register", async(req, res)=>{
 
 //login check
 
+//---> get "/login"
 app.get("/login", (req,res)=>{
     res.render("login");
 })
-
+//---> post "/login"
 app.post("/login", async(req,res)=>{
     try{
         const email = req.body.email;
         const password = req.body.password;
         console.log(email);
-
+        //find the specified email in the database
         const useremail = await Register.findOne({email: email});
 
-        if(useremail.password === password){
+        //compare typed password with the stored password
+        const isMatch = await bcrypt.compare(password, useremail.password);
+
+        //if typed password matched with password in database
+        if(isMatch){
             res.status(201).render("index");
         }
         else{
@@ -84,6 +93,8 @@ app.post("/login", async(req,res)=>{
     }
 })
 
+
+//listening
 app.listen(port, ()=>{
     console.log(`server is running at port no ${port}`);
 })

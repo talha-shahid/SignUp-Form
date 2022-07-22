@@ -84,7 +84,7 @@ margin-top: 7vh;
     background: linear-gradient(135deg, #9b59b6, #118cdd);
     position: absolute;
     top: 90px;
-    left: -8px;
+    left: 10vw;
     color: white;
     text-shadow: -1px 1px 0 #000,1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000;
     padding: 10px 0;
@@ -102,7 +102,7 @@ margin-top: 7vh;
     background: linear-gradient(135deg, #118cdd, #9b59b6);
     position: absolute;
     top: 150px;
-    left: -10px;
+    left: 10vw;
     color: rgba(0, 0, 0, 0.753);
     padding: 20px 0;
     text-align: center;
@@ -143,6 +143,8 @@ margin-top: 7vh;
 /* box 2 */
 .box2{
     padding-top: 90px;
+    padding-left: 15px;
+    padding-right: 15px;
     background-color: rgba(3, 45, 58, 0.644);
     height: 80vh;
     
@@ -150,5 +152,33 @@ margin-top: 7vh;
 /* box 3 */
 .box3{
     background-color: rgba(86, 111, 119, 0.644);
-    height: 30vh;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.box3 #pics1{
+    height: 40vh;
+}
+.box3 #pics2{
+    height: 40vh;
+}
+.box3 img{
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 920px) {
+    #heading{
+        padding: 5px 0;
+        font-size: 30px;
+        top: 53px;
+    }
+    #para{
+        padding: 10px 0;
+        font-size: 15px;
+        top: 98px;
+    }
+    .box10{
+        height: 100px;
+    }
+  }
